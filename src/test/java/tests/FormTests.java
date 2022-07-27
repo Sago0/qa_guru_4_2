@@ -27,9 +27,10 @@ public class FormTests {
         $(".custom-control-label").click();
         $("#userNumber").setValue("6854351665");
         $("#dateOfBirthInput").click();
-        $(byXpath("//*[@id=\"dateOfBirth\"]/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div[1]")).click();
-        $("#subjectsInput").setValue("Hey, you! Yes, you! Get OFF!");
-        $(byXpath("//*[@id='hobbiesWrapper']/div[2]/div[2]/label")).click();
+        $x("//div[@class = 'react-datepicker__week']//div[text() = 5]").click();
+
+        $("#subjectsInput").setValue("Biology").pressEnter();
+        $("[for = 'hobbies-checkbox-2']").click();
         $("#uploadPicture").uploadFile(new File("src/test/java/resources/cuppy.jpg"));
         $("#currentAddress").setValue("Kukuevo 21b");
 
@@ -39,10 +40,13 @@ public class FormTests {
         $("#react-select-4-option-2").click();
         $("#submit").click();
 
+
         $(".modal-content").shouldHave(text("Valera Dushnila"),
                 text("ggg@gg.com"),
                 text("6854351665"),
                 text("Kukuevo 21b"),
+                text("cuppy.jpg"),
+                text("Biology"),
                 text("Male"),
                 text("Reading"),
                 text("Uttar Pradesh Merrut"));
